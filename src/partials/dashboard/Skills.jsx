@@ -12,7 +12,12 @@ import { Radar } from "react-chartjs-2";
 // Import utilities
 import { useCookies } from "react-cookie";
 import { tailwindConfig } from "../../utils/Utils";
-import { skills } from "../../data/mockData";
+// import { skills } from "../../data/mockData";
+import useSkills from "../../hooks/dashboard/useSkills";
+
+
+
+
 
 ChartJS.register(
   RadialLinearScale,
@@ -27,7 +32,7 @@ function Skills() {
   const [cookies] = useCookies(["studentId"]);
   const { studentId } = cookies;
   // const studentId = "B11000000";
-  const { labels, values } = skills;
+  const { labels, values } = useSkills(studentId);
   const chartData = {
     labels,
     datasets: [
@@ -40,6 +45,13 @@ function Skills() {
       }
     ]
   };
+// console.log(skills.values)
+// let { skilabel, skivalues } = useSkills();
+
+// console.log(skilabel, skivalues)
+
+
+
 
   return (
     <div className="flex">
